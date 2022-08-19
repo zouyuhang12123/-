@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安康检测</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+    <style>
+        body{
+            font-size: 12px;
+            font-family: 微软雅黑;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h1,h2,h3,li,a{
+            text-decoration: none;
+            list-style: none;
+        }
+        .header{
+            width: 100%;
+            height: 152px;
+        }
+        .header_top {
+            width: 1100px;
+            height: 120px;
+            margin: 0 auto;
+        }
+        .logo {
+            float: left;
+            width: 400px;
+            padding-top: 30px;
+            padding-left: 40px;
+        }
+        .tel {
+            float: right;
+            padding-bottom: 15px;
+        }
+        .header_menu {
+            float: right;
+            width: 540px;
+            line-height: 24px;
+        }
+        .header_menu ul li {
+            float: left;
+            text-align: center;
+            color: #666;
+        }
+        .header_menu ul{
+            float: right;
+        }
+        .search{
+            float: right;
+            clear: right;
+        }
+		form{
+			display: block;
+			margin-top: 0em;
+		}
+		.header_nav{
+			height: 32px;
+    		background: rgb(2, 72, 121) none repeat scroll 0% 0%;
+		}
+		.nav{
+			width: 1100px;
+			margin: 0 auto;
+			height: 32px;
+			line-height: 32px;
+			font-size: 14px;
+		}
+		.nav li{
+			float: left;
+			width: 135px;
+			text-align: center;
+		}
+		.nav li a{
+			float: left;
+			color: #fff;
+			font-family: 微软雅黑;
+			text-align: center;
+		}
+		.nav li a:hover{
+			color: red;
+		}
+	
+        #box{
+        width: 100%;
+        height: 482px;
+        /* border: 1px solid #102327; */
+        position: relative;
+        margin:0 auto 20px;
+        /* margin-top: 100px; */
+        overflow: hidden;
+        }
+        .ul_list{
+            width:4500px;
+            height: 482px;
+            position: absolute;
+        }
+        .li_list{
+            width: 1500px;
+            height: 482px;
+            list-style: none;
+            float: left;
+        }
+        .li_list img{
+            width: 100%;
+            height: 100%;
+        }
+        .odiv_nav{
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            margin-left: -100px;
+        }
+        .span_list{
+            width: 20px;
+            height: 20px;
+            border: 3px solid white;
+            border-radius:50%;
+            float: left;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+        .left_click,.right_click{
+            display: none;
+            position: absolute;
+            font-size:4em;
+            color: rgb(75, 70, 70);
+            line-height: 400px;
+            cursor: pointer;
+            z-index: 10000;
+            height: 80px;
+            text-align: center;
+        }
+        .left_click{
+           left: 0px;
+        }
+        .right_click{ 
+            right: 0px;
+            /* display: block; */
+        }
+        #main{
+            width: 100%;
+            margin: 0 auto;
+        }
+        .main-a{
+            width: 1100px;
+            height: 280px;
+            padding-top: 30px;
+            margin: 0 auto;
+        }
+        .main-a-a{
+            height: 25px;
+            width: 470px;
+            border-bottom: 1px solid #666;
+            margin: 0 auto;
+        }
+    
+        .main-h{
+            width: 180px;
+            height: 25px;
+            border-bottom: 2px solid #004080;
+            margin: 0 auto;
+        }
+
+        .main-a-a p{
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            color: #666666;
+        }
+        .main-b-b p{
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            color: #666666;
+        }
+        .main-b {
+            width: 150px;
+            text-align: center;
+            padding-top: 45px;
+            float: left;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+        .main-b h1 {
+            line-height: 40px;
+            color: #333;
+            font-size: 14px;
+        }
+        .main-b p {
+            color: #666;
+        }
+        .main-c {
+            margin: 0 auto;
+            height: 440px;
+            padding-top: 10px;
+            background: #F9F9F9;
+        }
+        .main-cc {
+            width: 1100px;
+            margin: 0 auto;
+        }
+        .main-c-c {
+            width: 670px;
+            height: 270px;
+            float: left;
+            padding-top: 45px;
+            padding-left: 25px;
+            padding-right: 25px;
+            line-height: 25px;
+            text-indent: 28px;
+            letter-spacing: 1px;
+            text-align: justify;
+            font-size: 14px;
+        }
+        .main-c-c p, .main-c-c a {
+            color: #333;
+        }
+        .main-c-a {
+            float: left;
+            padding-top: 60px;
+            padding-right: 10px;
+        }
+        .main-c-a-i {
+            border: 2px solid #CCC;
+            padding: 5px;
+        }
+        .main-d {
+            height: 340px;
+            padding-top: 25px;
+        }
+        .main-d-a {
+            width: 1100px;
+            margin: 0 auto;
+        }
+        .main-dd {
+            width: 470px;
+            height: 220px;
+            float: left;
+        }
+        .main-i {
+            width: 125px;
+            height: 170px;
+            float: left;
+            padding-top: 50px;
+            padding-left: 15px;
+            padding-right: 15px;
+            text-align: center;
+        }
+        .main-i a{
+            color: #333;
+        }
+        .main-i p {
+            font-size: 12px;
+            line-height: 24px;
+        }
+        .main-da {
+            width: 585px;
+            height: 180px;
+            float: left;
+            padding-top: 45px;
+            padding-left: 20px;
+            text-indent: 24px;
+            letter-spacing: 1px;
+            line-height: 23px;
+            text-align: justify;
+            font-size: 14px;
+        }
+        .end {
+            width: 100%;
+            height: 85px;
+            padding-top: 15px;
+            border-top: 2px solid #004080;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        .f-fa {
+            width: 1100px;
+            margin: 0 auto;
+        }
+        .f-logo {
+            float: left;
+            padding-top: 15px;
+        }
+
+        .f-logo1 {
+            float: right;
+        }
+        .f-wz {
+            width: 570px;
+            height: 35px;
+            margin: 0 auto;
+            padding-top: 5px;
+        }
+        .f-bq {
+            width: 485px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .f-yl {
+            width: 900px;
+            line-height: 24px;
+            margin: 0 auto;
+            padding-top: 10px;
+        }
+        .bdshare-button-style0-16 {
+            zoom: 1;
+        }
+        .bdshare-button-style0-16 .bds_more {
+            color: #333;
+            float: left;
+        }
+        .bdshare-button-style0-16 .bds_qzone {
+            background-position: 0 -52px;
+        }
+        .bdshare-button-style0-16 .bds_tsina {
+            background-position: 0 -104px;
+        }
+        .bdshare-button-style0-16 .bds_tqq {
+            background-position: 0 -260px;
+        }
+        .bdshare-button-style0-16 .bds_renren {
+            background-position: 0 -208px;
+        }
+        .bdshare-button-style0-16 .bds_weixin {
+            background-position: 0 -1612px;
+        }
+        .bdshare-button-style0-16 a, .bdshare-button-style0-16 .bds_more {
+            float: left;
+            font-size: 12px;
+            padding-left: 17px;
+            line-height: 16px;
+            height: 16px;
+            background-image: url(../img/share/icons_0_16.png?v=d754dcc0.png);
+            background-repeat: no-repeat;
+            cursor: pointer;
+            margin: 6px 6px 6px 0;
+            }
+            .bdshare-button-style0-16:after {
+            content: ".";
+            visibility: hidden;
+            display: block;
+            height: 0;
+            clear: both;
+        }
+        .f-wz ul li {
+            list-style: none;
+            width: 80px;
+            text-align: center;
+            border-right: 1px solid #999999;
+            float: left;
+        }
+        .f-yl ul li {
+            list-style: none;
+            padding-right: 10px;
+            text-align: center;
+            float: left;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="logo">
+                <a href="">
+					<img src="./img/Logo.jpg" alt="深圳市安康检测有限公司">
+				</a>
+            </div>
+			<div class="header_menu">
+                <ul>
+                    <li><a href=""><img src="./img/weixin.jpg" style="padding-top: 2px;" alt="关注安康"></a></li>
+                    <li style="padding-left: 8px ; padding-right :8px; "><a href="">中文</a></li>
+                    <li><a href="">网站地图</a></li>
+                </ul>
+            </div>
+            <div class="tel">
+                <a href=""><img src="./img/tel.jpg" alt="联系我们"></a>
+            </div>
+            <form action="search.asp" method="post">
+				<div class="search">
+					<input name="sokey" onfocus="this.value=''" value="请输入你想收搜的内容" type="text" size="20" style="height: 22px;">
+					<input type="image" src="./img/Icon_ser.jpg" style="vertical-align:middle;" alt="安康收搜">
+            	</div>
+			</form>    
+        </div>
+        <!-- 导航条 -->
+		<div class="header_nav">
+			<ul class="nav">
+				<li><a href="">安康首页</a></li>
+				<li><a href="">关于安康</a></li>
+				<li><a href="">检测范围</a></li>
+				<li><a href="">检测标准</a></li>
+				<li><a href="">检测中心</a></li>
+				<li><a href="">安康咨询</a></li>
+				<li><a href="">授权查询</a></li>
+				<li><a href="">联系安康</a></li>
+			</ul>
+		</div>
+
+    </div>
+    <div id="box">
+        <ul class="ul_list">
+            <li class="li_list"><img src="./img/banner.jpg" alt=""/></li>
+            <li class="li_list"><img src="./img/banner2.jpg" alt=""/></li>
+            <li class="li_list"><img src="./img/banner3.jpg" alt=""/></li>
+            <!-- <li class="li_list"><img src="./img/banner.jpg" alt=""/></li> -->
+        </ul>
+        <div class="odiv_nav">
+            <span class="span_list"></span>
+            <span class="span_list"></span>
+            <span class="span_list"></span>
+            <!-- <span class="span_list"></span> -->
+        </div>
+        <div class="left_click"><</div>
+        <div class="right_click">></div>
+        <!-- <div class="btn_left"></div>
+        <div class="btn_right"></div> -->
+    </div>
+    <div id="main">
+        <div class="main-a">
+            <div class="main-a-a">
+                <div class="main-h">
+                    <p>OUR SERVES</p>
+                    <p>我们的服务</p>
+                </div>
+            </div>
+            <div class="main-b">
+                <a href=""><img style="border:0;" src="./img/1.png" alt="水质检测" data-bd-imgshare-binded="1">
+                <h1>水质检测</h1>
+                <p>饮用水检测、矿泉水检测、工业用水检测等</p>
+                </a>
+            </div>
+            <div class="main-b">
+                <a href=""><img style="border:0;" src="./img/2.jpg" alt="土污泥检测" data-bd-imgshare-binded="1">
+                    <h1>土污泥检测</h1>
+                    <p>饮用水检测、矿泉水检测、工业用水检测等</p>
+                    </a>
+            </div>
+            <div class="main-b">
+                <a href=""><img style="border:0;" src="./img/3.jpg" alt="工业废气检测" data-bd-imgshare-binded="1">
+                    <h1>工业废气检测</h1>
+                    <p>饮用水检测、矿泉水检测、工业用水检测等</p>
+                    </a>
+            </div>
+            <div class="main-b">
+                <a href=""><img style="border:0;" src="./img/4.jpg" alt="工业噪音检测" data-bd-imgshare-binded="1">
+                    <h1>工业噪音检测</h1>
+                    <p>饮用水检测、矿泉水检测、工业用水检测等</p>
+                    </a>
+            </div>
+            <div class="main-b">
+                <a href=""><img style="border:0;" src="./img/5.jpg" alt="产地环境认证检测" data-bd-imgshare-binded="1">
+                    <h1>产地环境认证检测</h1>
+                    <p>饮用水检测、矿泉水检测、工业用水检测等</p>
+                    </a>
+            </div>
+            <div class="main-b">
+                <a href=""><img style="border:0;" src="./img/6.jpg" alt="环境空气检测" data-bd-imgshare-binded="1">
+                    <h1>环境空气检测</h1>
+                    <p>饮用水检测、矿泉水检测、工业用水检测等</p>
+                    </a>
+            </div>
+        </div>
+        <div class="main-c">
+            <div class="main-a-a">
+                <div class="main-h">
+                    <p>INTRODUCTION</p>
+                    <p>安康介绍</p>
+                </div>
+            </div>
+            <div class="main-cc">
+                <div class="main-c-c">
+                    <p>深圳市安康检测科技有限公司是深圳市政府依法注册的专业检测技术机构，是获得CMA资质的高新科技服务公司，是哈尔滨工业大学深圳研究生院科学实验基地。坐落于深圳市光明新区招商局光明科技园，面积1200平方米，注册资金1000万元。公司立足于深圳，面向全国，服务世界的经营发展战略，主要检测服务领域包括：水和废水、污泥和泥质、环境空气和废气、噪声、食品和化妆品等。</p>
+                    <p>安康检测拥有实力雄厚的检测技术团队和质量管理专家，本科以上学历人员占90%以上，其中教授一名，高级工程师数名，专业经验长达20年以上；同时拥有大批国际先进的检测设备和精密仪器，进行检测、分析与研究，如液相色谱仪（LC）、电感耦合等离子体质谱仪（ICP-MS）、电感耦合等离子体光谱仪（ICP-OES）、气相色谱仪（GC）、气质联用仪（GC-MS）、高效液相色谱仪（HPLC）、离子色谱仪（IC）、紫外分光光度计（UV-VIS）、生物显微镜及显微照相装置系统等。</p>
+                    <p>安康检测保证第三方检测检验的客观公正、独立公平、科学准确、诚信可靠，可为政府、科研机构、工矿企业及社会各界用专业的人才、顶尖的设备、优惠的价格提供检测检验等技术服务与支持...</p>
+                    <!-- <br> -->
+                    <a href="">更多>></a>
+                </div>
+                <div class="main-c-a">
+                    <a href=""><img class="main-c-a-i" src="./img/akjj.jpg" alt="安康检测" data-bd-imgshare-binded="1"></a>
+                </div>
+            </div>
+        </div>
+        <div class="main-d">
+            <div class="main-a-a">
+                <div class="main-h">
+                    <p>INTRODUCTION</p>
+                    <p>安康介绍</p>
+                </div>
+            </div>
+            <div class="main-d-a">
+                <div class="main-dd">
+                    <div class="main-i">
+                        <a href="">
+                            <img src="./img/j1.jpg" alt="CMA计量认证" style="border: 0;" data-bd-imgshare-binded="1">
+                            <p>CMA计量认证</p>
+                        </a>
+                    </div>
+                    <div class="main-i">
+                        <a href="">
+                            <img src="./img/j2.jpg" alt="社会团体会员" style="border: 0;" data-bd-imgshare-binded="1">
+                            <p>社会团体会员</p>
+                        </a>
+                    </div>
+                    <div class="main-i">
+                        <a href="">
+                            <img src="./img/j3.jpg" alt="环境检测协会会员" style="border: 0;" data-bd-imgshare-binded="1">
+                            <p>环境检测协会会员</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="main-da">
+                    <p>CMA资质：（CMAcertificate) 广东省质量技术监督局专家评审组对安康检测机构的人员、机器、材料、方法、环境、测试等六方面实施了严格的计量认证现场评审；经过现场提问、现场加标测试、盲样测试、现场演示、人员及仪器比对等考核方式对我公司进行审查，我公司实验室环境条件、仪器设备、量值朔源、人员素质、检测结果、质量体系充分满足第三方实验室的国家标准要求，完全可以向社会出具公正的检测报告。 安康检测机构的检测项目均经过计量认证（CMA），出具的检测报告允许加盖国家CMA印章，报告可用于产品质量评价、科研成果及司法鉴定，具有法律效力。安康检测公司是广东省环保厅指定政府购买环境检测服务的第三方实验室，是入围深圳市人居委政府购买服务的检测公司。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="warp end">
+        <div class="f-fa">
+          <div class="f-logo"><a href=""><img src="./img/Logo1.jpg" alt="深圳市安康检测科技有限公司"style="border:0;"></a></div>
+          <div class="f-logo1"><img src="./img/Logo12.jpg" alt="百年安康" ></div>
+          <div class="f-wz">
+            <ul>
+              <li><a href="">安康首页</a></li>
+              <li><a href="">检测范围</a></li>
+              <li><a href="">检测中心</a></li>
+              <li><a href="#">客户案例</a></li>
+              <li><a href="">服务与支持</a></li>
+              <li><a href="">安康资讯</a></li>
+              <li style="border-right:none;" class="lxwm"><a href="">联系安康</a></li>
+            </ul>
+          </div>
+          <div class="f-bq">CopyRight &copy; 2014-2015&nbsp;&nbsp;<a href="">深圳市安康检测科技有限公司</a>&nbsp;<script type="text/javascript"> var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2f87dfb471d0f1797008151806ef8499' type='text/javascript'%3E%3C/script%3E")) </script>&nbsp;<a href="http://beian.miit.gov.cn" target="_blank"> 粤ICP备14023952号</a>
+          <script id="ebsgovicon" src="" type="text/javascript" charset="utf-8"></script> </div>
+          <div class="f-yl">
+            <ul>
+              <li>友情链接：</li>
+              <li><a href="">水质检测</a></li>
+              <li><a href="">工业废气检测</a></li>
+              <li><a>油雾净化器</a></li>
+              <li><a>苏州光触媒</a></li>
+              <li><a>防霜机</a></li>
+              <li><a>山西室内空气治理</a></li>
+              <li><a>送水公司</a></li>
+              <li><a>农业硫酸亚铁</a></li>
+              <li><a>沙特SASO</a></li>
+              <li><a>山西环保工程</a></li>
+              <li><a>净水器</a></li>
+              <li style="padding-left:70px;"><a>有机废气处理设备</a></li>
+              <li><a>宜居家园网</a></li>
+              <li><a href="">乐清样本设计</a></li>
+              <li><a href="">东台装修</a></li>
+              <li><a href="">广东空气消毒机</a></li>
+              <li><a href="">检测</a></li>
+          </div>
+        </div>
+      </div>
+	<script>
+		$(function(){
+        var num=0;
+        var timer=null;
+        go();
+        $("#box").mouseenter(function(){//实现当鼠标移动到box上时，不执行自动轮播功能
+            clearInterval(timer);//移动进去时清除定时器
+            $('.left_click').css("display","block")//鼠标键入
+            $('.right_click').css("display","block")
+        }).mouseleave(function(){
+            go();//移出后执行go函数
+            $('.left_click').css("display","none")//鼠标移出
+            $('.right_click').css("display","none")
+        });
+        $(".span_list").eq(0).css("backgroundColor","white");
+        //页面加载后默认是第一张图，则让第一个导航圆点变为“选中色”。
+        function go(){
+          timer=setInterval(function(){//设置定时器
+                num++;//用一个全局变量来控制图的运动次数
+                if(num>=3){//如果移动到了最后一张图，则num赋值1，调整ul边距（相当于初始化）
+                    num=0;
+                    $(".ul_list").css("margin-left","0px");
+                }
+                if(num==3){//给第一个圆点“选中色”。
+                    $(".span_list").css("backgroundColor","transparent");
+                    $(".span_list").eq(0).css("backgroundColor","white");
+                }
+                else{//图片运动一次，导航圆点也动态的变换，这里先让所有圆点变为“不选中色”，再让当前圆点变为“选中色”。
+                    $(".span_list").css("backgroundColor","transparent");
+                    $(".span_list").eq(num).css("backgroundColor","white");
+                }
+                $(".ul_list").animate({"marginLeft":-1500*num+"px"},580);//使用animate实行运动功能
+            },2000);
+        }
+
+        $(".span_list").each(function (index) {//遍历每一个圆点添加点击事件，点击当前圆点则让num值赋为当前圆点的索引
+            $(this).click(function () {
+                num=index;
+                $(".span_list").css("backgroundColor","transparent");
+                $(".span_list").eq(num).css("backgroundColor","white");
+                $(".ul_list").stop().animate({"marginLeft":-1500*num+"px"},580);
+            })
+        });
+
+        $(".right_click").click(function(){
+        //右按钮点击事件，每点击一次num++,这里有很多的判断，是用来消除一些BUG的。
+            if(num<=3){num++;}
+            if(num>3){
+                num=0;
+                $(".ul_list").css("margin-left","0px");
+            }
+            if(num==3){
+                $(".span_list").css("backgroundColor","transparent");
+                $(".span_list").eq(0).css("backgroundColor","white");
+            }
+            else{
+                $(".span_list").css("backgroundColor","transparent");
+                $(".span_list").eq(num).css("backgroundColor","white");
+            }
+            $(".ul_list").stop().animate({"marginLeft":-1500*num+"px"},580);
+
+        });
+
+        $(".left_click").click(function(){//左按钮点击事件
+            if(num>=0){num--;}
+            if(num<0){
+                num=3;
+                $(".ul_list").css("margin-left","-2846px")
+                $(".span_list").css("backgroundColor","transparent");
+                $(".span_list").eq(3).css("backgroundColor","white");
+            }
+            else{
+                $(".span_list").css("backgroundColor","transparent");
+                $(".span_list").eq(num).css("backgroundColor","white");
+            }
+            $(".ul_list").stop().animate({"marginLeft":-1500*num+"px"},580);
+
+        });
+    });
+	</script>
+</body>
+</html>
